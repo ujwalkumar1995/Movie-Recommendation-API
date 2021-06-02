@@ -58,7 +58,7 @@ def recommend_movies(title, data, combine, transform):
 #Function that takes in genre_name as parameter and returns top 4 movies of that genre       
 def get_movies_based_on_genre(genre_name):
 
-        genre_data = pd.read_csv('Processed_DataSet/Recommendations_Genre.csv')
+        genre_data = pd.read_csv('Processed_DataSet/Recommendations_DataSet_Genre.csv')
         mean_vote_count = genre_data["vote_count"].mean()
         
         cols = ["movie_id", "original_title","vote_count","vote_average"]
