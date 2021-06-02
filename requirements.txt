@@ -16,6 +16,7 @@ defusedxml==0.7.1
 entrypoints==0.3
 Flask==2.0.1
 Flask-Cors==3.0.10
+gunicorn==20.1.0
 idna==2.10
 ipykernel==5.5.5
 ipython==7.24.0
@@ -58,6 +59,9 @@ pyparsing==2.4.7
 pyrsistent==0.17.3
 python-dateutil==2.8.1
 pytz==2021.1
+pywin32==301
+pywinpty==1.1.1
+pyzmq==22.1.0
 requests==2.25.1
 scikit-learn==0.24.2
 scipy==1.6.3
