@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 def get_data():
-        movie_data = pd.read_csv('Dataset/Recommendations_DataSet')
+        movie_data = pd.read_csv('Dataset/Recommendations_DataSet.csv')
         movie_data['original_title'] = movie_data['original_title'].str.lower()
         return movie_data
 
@@ -21,7 +21,7 @@ def transform_data(data_combine, data_plot):
         count_matrix = count.fit_transform(data_combine['combine'])
 
         tfidf = TfidfVectorizer(stop_words='english')
-        tfidf_matrix = tfidf.fit_transform(data_plot['plot'])
+        tfidf_matrix = tfidf.fit_transform(data_plot['plot'].values.astype('U'))
 
         combine_sparse = sp.hstack([count_matrix, tfidf_matrix], format='csr')
         cosine_sim = cosine_similarity(combine_sparse, combine_sparse)
@@ -37,7 +37,7 @@ def recommend_movies(title, data, combine, transform):
 
         sim_scores = list(enumerate(transform[index]))
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-        sim_scores = sim_scores[1:21]
+        sim_scores = sim_scores[1:11]
 
 
         movie_indices = [i[0] for i in sim_scores]
