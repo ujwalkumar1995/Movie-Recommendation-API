@@ -96,7 +96,6 @@ def results(movie_name):
 #Caller function that is called when we hit the /genre endpoint 
 def results_on_genres(genre_name):
         
-        
         recommendations_on_genre = get_movies_based_on_genre(genre_name)
 
         if len(recommendations_on_genre) == 0:
