@@ -33,14 +33,14 @@ def transform_data(data_combine, data_plot):
         return cosine_sim
 
 
-#Recommend top 10 movies similar to a particular movie
+#Recommend top movies similar to a particular movie
 def recommend_movies(title, data, combine, transform):
         indices = pd.Series(data.index, index = data['original_title'])
         index = indices[title]
 
         sim_scores = list(enumerate(transform[index]))
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-        sim_scores = sim_scores[1:11]
+        sim_scores = sim_scores[1:101]
 
         movie_indices = [i[0] for i in sim_scores]
 
@@ -55,7 +55,7 @@ def recommend_movies(title, data, combine, transform):
         return recommendation_data
         
         
-#Function that takes in genre_name as parameter and returns top 4 movies of that genre       
+#Function that takes in genre_name as parameter and returns top movies of that genre       
 def get_movies_based_on_genre(genre_name):
 
         genre_data = pd.read_csv('Processed_Dataset/Recommendations_DataSet_Genre.csv')
@@ -66,7 +66,7 @@ def get_movies_based_on_genre(genre_name):
         genre_condition = genre_data[genre_name] == 1
         
         filtered_data = (genre_data[cols] [vote_count_condition & genre_condition])
-        sorted_data = filtered_data.sort_values(by=['vote_average'],ascending=False).head(4)
+        sorted_data = filtered_data.sort_values(by=['vote_average'],ascending=False)
         
         final_recommendation_data = pd.DataFrame(columns=['Movie_Id','Name'])
         
